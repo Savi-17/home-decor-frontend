@@ -1,8 +1,6 @@
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../../components/feature/Header';
-import Footer from '../../components/feature/Footer';
 import { useAuth } from '../../hooks/useAuth';
 
 interface Order {
@@ -161,14 +159,6 @@ export default function OrdersPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header 
-        onLoginClick={() => {}}
-        onCartClick={() => {}}
-        cartCount={0}
-        isLoggedIn={isLoggedIn}
-        onLogout={logout}
-        user={user}
-      />
 
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Breadcrumb */}
@@ -363,7 +353,6 @@ export default function OrdersPage() {
         )}
       </div>
 
-      <Footer />
     </div>
   );
 }

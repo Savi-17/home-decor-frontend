@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Header from "../../components/feature/Header";
-import Footer from "../../components/feature/Footer";
 import Button from "../../components/base/Button";
 import { useAuth } from "../../hooks/useAuth";
 import { useCart } from "../../hooks/useCart";
@@ -92,14 +90,6 @@ export default function Products() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header
-        onLoginClick={() => {}}
-        onCartClick={() => {}}
-        cartCount={itemCount}
-        isLoggedIn={isLoggedIn}
-        onLogout={logout}
-        user={user}
-      />
 
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-lavender-50 to-lavender-100 py-16">
@@ -670,8 +660,6 @@ export default function Products() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 }

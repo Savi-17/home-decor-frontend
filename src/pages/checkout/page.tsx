@@ -1,8 +1,6 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Header from '../../components/feature/Header';
-import Footer from '../../components/feature/Footer';
 import Button from '../../components/base/Button';
 import Input from '../../components/base/Input';
 import { useAuth } from '../../hooks/useAuth';
@@ -134,14 +132,6 @@ export default function CheckoutPage() {
   if (cartItems.length === 0 && !orderComplete) {
     return (
       <div className="min-h-screen bg-white">
-        <Header 
-          onLoginClick={() => {}}
-          onCartClick={() => {}}
-          cartCount={itemCount}
-          isLoggedIn={isLoggedIn}
-          onLogout={logout}
-          user={user}
-        />
 
         <div className="max-w-2xl mx-auto px-4 py-16 text-center">
           <i className="ri-shopping-cart-line text-6xl text-gray-300 mb-6"></i>
@@ -152,7 +142,6 @@ export default function CheckoutPage() {
           </Link>
         </div>
 
-        <Footer />
       </div>
     );
   }

@@ -1,8 +1,6 @@
 
 import { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import Header from '../../components/feature/Header';
-import Footer from '../../components/feature/Footer';
 import { useAuth } from '../../hooks/useAuth';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -107,15 +105,6 @@ export default function TrackingPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header 
-        onLoginClick={() => {}}
-        onCartClick={() => {}}
-        cartCount={0}
-        isLoggedIn={isLoggedIn}
-        onLogout={logout}
-        user={user}
-      />
-
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Breadcrumb */}
         <nav className="flex mb-8" aria-label="Breadcrumb">
@@ -294,8 +283,6 @@ export default function TrackingPage() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 }

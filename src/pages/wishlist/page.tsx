@@ -1,6 +1,3 @@
-
-import Header from '../../components/feature/Header';
-import Footer from '../../components/feature/Footer';
 import Button from '../../components/base/Button';
 import { useAuth } from '../../hooks/useAuth';
 import { useCart } from '../../hooks/useCart';
@@ -22,14 +19,6 @@ export default function Wishlist() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header 
-        onLoginClick={() => {}}
-        onCartClick={() => {}}
-        cartCount={itemCount}
-        isLoggedIn={isLoggedIn}
-        onLogout={logout}
-        user={user}
-      />
 
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="bg-white rounded-2xl shadow-sm p-8">
@@ -103,8 +92,6 @@ export default function Wishlist() {
           )}
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 }

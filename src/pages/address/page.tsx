@@ -1,9 +1,6 @@
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../../components/feature/Header';
-import Footer from '../../components/feature/Footer';
-import { useAuth } from '../../hooks/useAuth';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
@@ -53,7 +50,6 @@ interface Address {
 }
 
 export default function AddressPage() {
-  const { user, isLoggedIn, logout } = useAuth();
   const [addresses, setAddresses] = useState<Address[]>([
     {
       id: '1',
@@ -154,14 +150,6 @@ export default function AddressPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header 
-        onLoginClick={() => {}}
-        onCartClick={() => {}}
-        cartCount={0}
-        isLoggedIn={isLoggedIn}
-        onLogout={logout}
-        user={user}
-      />
 
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Breadcrumb */}
@@ -214,7 +202,7 @@ export default function AddressPage() {
               onSubmit={handleSubmit}
               enableReinitialize
             >
-              {({ isSubmitting, values, setFieldValue }) => (
+              {({ isSubmitting }) => (
                 <Form>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -478,7 +466,6 @@ export default function AddressPage() {
         )}
       </div>
 
-      <Footer />
     </div>
   );
 }

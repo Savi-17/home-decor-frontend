@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import Header from '../../components/feature/Header';
-import Footer from '../../components/feature/Footer';
 import Button from '../../components/base/Button';
 import { useAuth } from '../../hooks/useAuth';
 import { useCart } from '../../hooks/useCart';
@@ -101,14 +99,6 @@ export default function ProductDetail() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header 
-        onLoginClick={() => {}}
-        onCartClick={() => {}}
-        cartCount={itemCount}
-        isLoggedIn={isLoggedIn}
-        onLogout={logout}
-        user={user}
-      />
 
       {/* Breadcrumb */}
       <div className="bg-gray-50 py-4">
@@ -565,8 +555,6 @@ export default function ProductDetail() {
           </div>
         </div>
       )}
-
-      <Footer />
     </div>
   );
 }

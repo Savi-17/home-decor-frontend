@@ -1,0 +1,3 @@
+//common layout with common header footer
+//break everything in compoents
+//api implementation
