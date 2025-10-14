@@ -33,7 +33,7 @@ export default function FeaturedCategories() {
             <Link key={category.id} to="/products" className="group cursor-pointer">
               <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300">
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img src={category.image} alt={category.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  <img src={category.image[1]} alt={category.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-2">{category.name}</h3>
