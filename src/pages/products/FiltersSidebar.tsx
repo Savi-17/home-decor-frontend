@@ -1,12 +1,14 @@
-import React from "react";
-
 export default function FiltersSidebar() {
+  
+  
   return (
     <div className="lg:w-64">
       <div className="bg-white rounded-lg border border-gray-200 p-6">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-lg font-semibold text-gray-900">Filters</h3>
-          <button className="text-sm text-lavender-600 hover:text-lavender-700">
+          <button 
+          
+          className="text-sm text-lavender-600 hover:text-lavender-700">
             Reset All
           </button>
         </div>
@@ -20,6 +22,7 @@ export default function FiltersSidebar() {
                 <input
                   type="radio"
                   name="category"
+                 
                   className="w-4 h-4 text-lavender-600 border-gray-300 focus:ring-lavender-500"
                 />
                 <span className="ml-2 text-sm text-gray-700 capitalize">

@@ -21,7 +21,7 @@ const routes: RouteObject[] = [
     element: <Wishlist />,
   },
   {
-    path: "/products",
+    path: "/category/:slug",
     element: <Products />,
   },
   {
