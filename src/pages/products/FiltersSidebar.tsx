@@ -1,6 +1,22 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getSubCategoryListing } from "../../store/slice/categorySlice";
+
 export default function FiltersSidebar() {
-  
-  
+
+   const dispatch = useDispatch<any>();
+
+   const { category, subCategory } = useSelector((state: any) => state.category);
+   if (!category) return <p>No category available.</p>;
+
+   const parentId = category.id;
+
+   useEffect(() => {
+    if (parentId) {
+      dispatch(getSubCategoryListing({ parentId: Number(parentId) }));
+    }
+  }, [parentId, dispatch]);
+
   return (
     <div className="lg:w-64">
       <div className="bg-white rounded-lg border border-gray-200 p-6">
@@ -16,17 +32,25 @@ export default function FiltersSidebar() {
         {/* Category */}
         <div className="mb-6">
           <h4 className="text-sm font-medium text-gray-900 mb-3">Category</h4>
-          <div className="space-y-2">
-            {["All", "Candles", "Soaps", "Paintings", "Gypsum"].map((category) => (
-              <label key={category} className="flex items-center cursor-pointer">
+          {category?.name && (
+            <h2 className="col-span-full text-xl font-semibold mb-2">
+              {category.name}
+            </h2>
+          )}
+          
+           <div className="space-y-2">
+          
+            {!!subCategory.length &&
+            subCategory.map((item: any) => (
+              <label key={item.id} className="flex items-center cursor-pointer">
                 <input
                   type="radio"
-                  name="category"
-                 
+                  name="subCategory"
+                  value={item.id}
                   className="w-4 h-4 text-lavender-600 border-gray-300 focus:ring-lavender-500"
                 />
                 <span className="ml-2 text-sm text-gray-700 capitalize">
-                  {category}
+                  {item.name}
                 </span>
               </label>
             ))}

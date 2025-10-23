@@ -1,6 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 export default function TopControls() {
+  const { products } = useSelector((state: any) => state.category);
   return (
     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
       <div className="flex items-center gap-4">
@@ -8,7 +10,19 @@ export default function TopControls() {
           <i className="ri-filter-line"></i>
           Filters
         </button>
-        <p className="text-gray-600">Showing 1–12 of 48 products</p>
+        {products && products.pagination && (
+          <p className="text-gray-600">
+            Showing{" "}
+            {(products.pagination.currentPage - 1) * products.pagination.limit +
+              1}
+            –
+            {Math.min(
+              products.pagination.currentPage * products.pagination.limit,
+              products.pagination.totalProducts
+            )}{" "}
+            of {products.pagination.totalProducts} products
+          </p>
+        )}
       </div>
 
       <div className="flex items-center gap-4">

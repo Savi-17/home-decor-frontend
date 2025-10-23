@@ -1,49 +1,80 @@
-// interface category {
-//   id: number;
-//   name: string;
-//   category: string;
-//   price: number;
-//   rating: number;
-//   image: string;
-//   isNew?: boolean;
-//   isOnSale?: boolean;
-//   freeShipping?: boolean;
-// }
-
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  image: string[];
+}
+
+interface Category {
+  id: number;
+  name: string;
+  slug: string;
+  description: string;
+  banner: string[];
+}
+
+interface Pagination {
+  totalProducts: number;
+  totalPages: number;
+  currentPage: number;
+  limit: number;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+}
+
 interface CategoryState {
-    categories: string[];
+    category: Category | null;
+    products: Product[];
+    pagination: Pagination | null;
     categoryLoad: boolean;
     error: string | null;
+    subCategory: any[];
 
 }
 
 const initialState: CategoryState = {
-    categories: [],
+    category: null,
+    products: [],
+    pagination: null,
     categoryLoad: false,
     error: null,
+    subCategory: [],
 }
- //get category listing is a function that fetches category listing from the backend and it is called by categorySlice
+
 export const getCategoryListing = createAsyncThunk( 'category/fetchCategoryListing',
-  async (slug: string) => {
+  async ({ slug, page = 1, limit = 12 }: { slug: string; page?: number; limit?: number }) => {
     try {
-      const { data } = await axios.get(`/api/category/slug/${slug}`);
+      const { data } = await axios.get(`/api/category/slug/${slug}?page=${page}&limit=${limit}`);
       return data.data;
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error fetching category listing:", error);
-      const err = error as any;
     }
   }
 );
+
+export const getSubCategoryListing = createAsyncThunk( "category/getSubCategoryListing",
+  async ({ parentId }: { parentId: number }) => {
+    try {
+      const { data } = await axios.get(`/api/category/ParentCategoryId/${parentId}`);
+      return data.data ;
+    } catch (error: any) {
+      console.error("Error fetching subcategories:", error);
+    }
+  }
+);
+
 
 const categorySlice = createSlice({
   name: 'category',
   initialState: initialState,
   reducers: {
     clearCategory(state) {
-      state.categories = [];
+      state.category = null;
+      state.products = [];
+      state.pagination = null;
     },
   },
   extraReducers: (builder) => {
@@ -54,12 +85,19 @@ const categorySlice = createSlice({
       })
       .addCase(getCategoryListing.fulfilled, (state, action) => {
         state.categoryLoad = false;
-        state.categories = action.payload as any | null;
+        state.category = action.payload.category;
+        state.products = action.payload as any | null;
       })
       .addCase(getCategoryListing.rejected, (state, action) => {
         state.categoryLoad = false;
         state.error = action.payload as string | null;
-      });
+      }).addCase(getSubCategoryListing.fulfilled,
+              (state, action ) => {
+                if (action.payload) {
+                  state.subCategory = action.payload;
+                }
+              }
+            );
   },
 });
 

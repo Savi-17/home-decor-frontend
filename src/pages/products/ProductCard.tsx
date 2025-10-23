@@ -8,7 +8,7 @@ export default function ProductCard({ product }: { product: any }) {
       <div className="relative aspect-square overflow-hidden rounded-t-2xl">
         <Link to={`/product/${product.id}`}>
           <img
-            src={product.image[1]}
+            src={product.image[0]}
             alt={product.name}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />

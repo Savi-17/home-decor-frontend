@@ -25,7 +25,7 @@ const routes: RouteObject[] = [
     element: <Products />,
   },
   {
-    path: "/product/:id",
+    path: "/product/:slug",
     element: <ProductDetail />,
   },
   {

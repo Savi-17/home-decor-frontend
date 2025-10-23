@@ -1,4 +1,4 @@
-import bgImage from '../../../assets/hero.jpg';
+import bgImage from '../../../images/hero.jpg';
 import { Link } from 'react-router-dom';
 import Button from '../../../components/base/Button';
 

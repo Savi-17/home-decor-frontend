@@ -1,33 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import HeroSection from "./HeroSection";
 import FiltersSidebar from "./FiltersSidebar";
 import TopControls from "./TopControls";
 import ProductGrid from "./ProductGrid";
-import Pagination from "./Pagination";
+import ProductPagination from "./ProductPagination";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategoryListing } from "../../store/slice/categorySlice";
-
 export default function Products() {
 
   const { slug } = useParams();
+  const { parentId } = useParams();
   const dispatch = useDispatch<any>();
-  const { categoryLoad, categories, error } = useSelector((state: any) => state.category);
+  const { category, products, categoryLoad, error: categoryError } = useSelector((state: any) => state.category);
 
   useEffect(() => {
     if (slug) {
-      dispatch(getCategoryListing(slug));
+      dispatch(getCategoryListing({ slug }));
     }
   }, [slug, dispatch]);
 
   if (categoryLoad) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
-  if (!categories) return null;
-
-  const selectedCategory = Array.isArray(categories)
-    ? (slug ? categories.find((c: any) => c.slug === slug) || categories[0] : categories[0])
-    : categories;
-
+  if (categoryError)
+    return (
+      <p>
+        Error: {categoryError}
+      </p>
+    );
+  if (!products) return null;
+  
   return (
     <div className="min-h-screen bg-white">
       <HeroSection />
@@ -37,9 +38,9 @@ export default function Products() {
           <FiltersSidebar />
 
           <div className="flex-1">
-            <TopControls />
-            <ProductGrid category={selectedCategory} />
-            <Pagination />
+             <TopControls />
+            <ProductGrid />
+            <ProductPagination />
           </div>
         </div>
       </div>

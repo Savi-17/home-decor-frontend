@@ -31,7 +31,7 @@ export default function FeaturedProducts() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center mb-12">
           <h2 className="text-4xl font-bold">Featured Products</h2>
-          <Link to="/products">
+          <Link to="/ProductGrid">
             <Button variant="outline">View All Products</Button>
           </Link>
         </div>
@@ -41,7 +41,7 @@ export default function FeaturedProducts() {
             <div key={product.id} className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300">
               <div className="relative aspect-square overflow-hidden rounded-t-2xl">
                 <Link to={`/product/${product.id}`}>
-                  <img src={product.image[1]||""} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                  <img src={product.image[0]||""} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                 </Link>
                 <ProductBadges isNew={product.isNew} onSale={product.onSale} />
                 <WishlistButton product={product} />
