@@ -72,6 +72,7 @@ export default function Home() {
       <CTASection />
 
       <LoginModal show={showLogin} onClose={() => setShowLogin(false)} />
+        
       <CartModal show={showCart} onClose={() => setShowCart(false)} />
     </div>
   );
