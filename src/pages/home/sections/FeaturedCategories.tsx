@@ -12,7 +12,6 @@ export default function FeaturedCategories() {
       try{
         const response = await axios.get('api/category/productByCategories');
         setCategories(response.data.data);
-        console.log(response.data.data);
       } catch (err) {
         setError('Failed to fetch featured products');
         console.error(err);

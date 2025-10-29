@@ -1,12 +1,10 @@
-import { BrowserRouter } from 'react-router-dom'
-import { AppRoutes } from './router'
-import Header from './components/feature/Header';
-import Footer from './components/feature/Footer';
-
+import { BrowserRouter } from "react-router-dom";
+import { AppRoutes } from "./router";
+import Header from "./components/feature/Header";
+import Footer from "./components/feature/Footer";
+import LoginModal from "./pages/home/sections/LoginModal";
 
 function App() {
-  
-
   return (
     <BrowserRouter>
       <div className="flex flex-col min-h-screen">
@@ -16,8 +14,9 @@ function App() {
         </main>
         <Footer />
       </div>
+      <LoginModal />
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
